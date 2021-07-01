@@ -1,0 +1,29 @@
+-- Get some things about a node
+a = NodeGetId("Node","Max")
+b = NodeTypesGetCount()
+c = NodeTypesGetCountByType("Node")
+d = NodePropertyGet("Node", "Max", "name")
+e = NodePropertyGetById(a, "name")
+a, b, c, d, e
+
+-- Get a couple of Nodes,
+NodeGet("Node","Max"), NodeGet("Node","Helene")
+
+-- get the relationship ids of a node
+rels = {}
+ids = NodeGetRelationshipsIds("Node", "Max")
+for k=1,#ids do
+		v = ids[k]
+		table.insert(rels, v.rel_id)
+	end
+rels, ids[1].node_id
+
+
+-- get the names of nodes I have relationships with
+names = {}
+ids = NodeGetRelationshipsIds("Node", "Max")
+for k=1,#ids do
+		v = ids[k]
+		table.insert(names, NodePropertyGetById(v.node_id, "name"))
+	end
+names
